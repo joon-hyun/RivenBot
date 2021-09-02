@@ -8,7 +8,7 @@ client.commands = new Collection();
 const eventFiles = fs.readdirSync("./events").filter(file => file.endsWith(".js"));
 
 for (const file of eventFiles) {
-  const { name, execute, once } = require(`./events/${file}`);
+  const { name, execute } = require(`./events/${file}`);
   client.on(name, (...args) => execute(...args));
 }
 
