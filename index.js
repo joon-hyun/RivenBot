@@ -8,12 +8,8 @@ client.commands = new Collection();
 const eventFiles = fs.readdirSync("./events").filter(file => file.endsWith(".js"));
 
 for (const file of eventFiles) {
-  const event = require(`./events/${file}`);
-  if (event.once) {
-    client.once(event.name, (...args) => event.execute(...args));
-  } else {
-    client.on(event.name, (...args) => event.execute(...args));
-  }
+  const { name, execute, once } = require(`./events/${file}`);
+  client.on(name, (...args) => execute(...args));
 }
 
 const commandFiles = fs.readdirSync("./commands").filter(file => file.endsWith(".js"));
@@ -48,7 +44,7 @@ client.on("interactionCreate", async (interaction) => {
       ["500", "Internal server error"],
       ["502", "Bad gateway"],
       ["503", "Service unavailable"],
-      ["504", "Gateway timeout"],
+      ["504", "Gateway timeout"]
     ]);
     const statusMessage = statusCodes.get(err.message);
 
