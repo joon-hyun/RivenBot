@@ -34,25 +34,26 @@ client.on("interactionCreate", async (interaction) => {
      * with the response.
      */
     const statusCodes = new Map([
-      ["400", "Bad request"],
-      ["401", "Unauthorized"],
-      ["403", "Forbidden"],
-      ["404", "Data not found"],
-      ["405", "Method not allowed"],
-      ["415", "Unsupported media type"],
-      ["429", "Rate limit exceeded"],
-      ["500", "Internal server error"],
-      ["502", "Bad gateway"],
-      ["503", "Service unavailable"],
-      ["504", "Gateway timeout"]
+      [400, "Bad request"],
+      [401, "Unauthorized"],
+      [403, "Forbidden"],
+      [404, "Data not found"],
+      [405, "Method not allowed"],
+      [415, "Unsupported media type"],
+      [429, "Rate limit exceeded"],
+      [500, "Internal server error"],
+      [502, "Bad gateway"],
+      [503, "Service unavailable"],
+      [504, "Gateway timeout"]
     ]);
-    const statusMessage = statusCodes.get(err.message);
+
+    const statusMessage = statusCodes.get(err);
 
     if (statusMessage === undefined) {
-      console.error(err);
       await interaction.reply({ content: "There was a problem while executing this command." });
+      console.error(err);
     } else {
-      await interaction.reply({ content: statusMessage });
+      await interaction.reply({ content: `${err} error: ${statusMessage}.` });
     }
   }
 });
