@@ -48,5 +48,15 @@ module.exports = {
     const path = `/lol/league/v4/entries/by-summoner/${summoner.id}`;
     const rankData = sendGetRequest(path);
     return rankData;
+  },
+  getChampionMasteries(summoner) {
+    const path = `/lol/champion-mastery/v4/champion-masteries/by-summoner/${summoner.id}`;
+    const championMasteries = sendGetRequest(path);
+    return championMasteries;
+  },
+  getMasteryScore(summoner) {
+    const path = `/lol/champion-mastery/v4/scores/by-summoner/${summoner.id}`;
+    const masteryScore = sendGetRequest(path);
+    return masteryScore;
   }
 };

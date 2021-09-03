@@ -1,2 +1,7 @@
 node_modules/
+
+# Data Dragon files.
+data/
+
+# API tokens and testing environment.
 config.json
