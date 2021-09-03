@@ -15,45 +15,46 @@ module.exports = {
   async execute(interaction) {
     const summonerName = interaction.options.getString("name");
     let summoner;
-    let data;
+    let rankData;
 
     try {
       summoner = await getSummoner(summonerName);
-      data = await getRankData(summoner);
+      rankData = await getRankData(summoner);
     } catch (err) {
       throw err;
     }
 
-    const queues = new Map([
+    const rankQueues = new Map([
       ["solo", "RANKED_SOLO_5x5"],
       ["flex", "RANKED_FLEX_SR"]
     ]);
-    const stats = new Map();
+    const rankStats = new Map();
 
-    queues.forEach((queue) => {
-      stats.set(queue, { rank: "Unranked", games: 0, winRate: "N/A" });
+    rankQueues.forEach((queue) => {
+      rankStats.set(queue, { rank: "Unranked", games: 0, winRate: "N/A" });
     });
 
     const embed = new MessageEmbed()
       .setTitle(summoner.name)
       .setDescription(`Lv. ${summoner.summonerLevel}`);
 
-    data.forEach((element) => {
+    rankData.forEach((element) => {
       const { queueType, tier, rank: division, leaguePoints, wins, losses } = element;
       const rank = `${tier} ${division}: ${leaguePoints} LP`;
       const games = wins + losses;
       const winRate = (wins / games * 100).toFixed(2);
 
-      stats.set(queueType, { rank: rank, games: games, winRate: winRate });
+      rankStats.set(queueType, { rank: rank, games: games, winRate: winRate });
     });
 
-    stats.forEach((stat, queue) => {
-      const { rank, games, winRate } = stat;
+    rankStats.forEach((stats, queue) => {
+      const { rank, games, winRate } = stats;
       const value = `${rank} | ${winRate}% WR (${games} games)`;
-      if (queue === queues.get("solo")) {
+
+      if (queue === rankQueues.get("solo")) {
         embed.addField("Ranked Solo/Duo", value, false);
       }
-      else if (queue === queues.get("flex")) {
+      else if (queue === rankQueues.get("flex")) {
         embed.addField("Ranked Flex", value, false);
       }
     });
