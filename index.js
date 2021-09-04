@@ -48,13 +48,16 @@ client.on("interactionCreate", async (interaction) => {
     ]);
 
     const statusMessage = statusCodes.get(err);
+    let message;
 
     if (statusMessage === undefined) {
-      await interaction.reply({ content: "There was a problem while executing this command." });
       console.error(err);
+      message = { content: "There was a problem while executing this command." };
     } else {
-      await interaction.reply({ content: `${err} error: ${statusMessage}.` });
+      message = { content: `${err} error: ${statusMessage}.` }
     }
+
+    await interaction.reply(message);
   }
 });
 
