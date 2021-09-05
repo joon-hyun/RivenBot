@@ -27,6 +27,7 @@ client.on("interactionCreate", async (interaction) => {
   if (!command) return;
 
   try {
+    await interaction.deferReply(); // Defer reply in case of bad connection.
     await command.execute(interaction);
   } catch (err) {
     /**
@@ -57,7 +58,7 @@ client.on("interactionCreate", async (interaction) => {
       message = { content: `${err} error: ${statusMessage}.` }
     }
 
-    await interaction.reply(message);
+    await interaction.editReply(message);
   }
 });
 
