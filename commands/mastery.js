@@ -39,7 +39,7 @@ module.exports = {
 
       embed.addField(`${i + 1}. ${champion.name}`,
                      `${championPoints.toLocaleString()} points`,
-                     false);
+                     true);
     }
 
     await interaction.editReply({ embeds: [embed] });
