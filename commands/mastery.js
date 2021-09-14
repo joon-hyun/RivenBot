@@ -16,7 +16,7 @@ module.exports = {
   async execute(interaction) {
     const summonerName = interaction.options.getString("name");
     let summoner;
-    let championMastery;
+    let championMasteries;
     let masteryScore;
 
     try {
@@ -33,13 +33,16 @@ module.exports = {
 
     // View summoner's top 3 champion masteries.
     for (let i = 0; i < 3; i++) {
-      const { championId, championPoints } = championMasteries[i];
-      const key = championKeys[championId.toString()];
-      const champion = championData[key];
-
-      embed.addField(`${i + 1}. ${champion.name}`,
-                     `${championPoints.toLocaleString()} points`,
-                     true);
+      if (i < championMasteries.length) {
+        const { championId, championPoints } = championMasteries[i];
+        const key = championKeys[championId.toString()];
+        const champion = championData[key];
+        embed.addField(`${i + 1}. ${champion.name}`,
+                       `${championPoints.toLocaleString()} points`,
+                       true);
+      } else {
+        embed.addField(`${i + 1}. N/A`, "N/A points", true);
+      }
     }
 
     await interaction.editReply({ embeds: [embed] });
