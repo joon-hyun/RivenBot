@@ -1,8 +1,6 @@
-const { JSDOM } = require("jsdom");
-const { window } = new JSDOM("<!DOCTYPE html>");
-const $ = require("jquery")(window);
 const { MessageEmbed } = require("discord.js");
 const { SlashCommandBuilder } = require("@discordjs/builders");
+const { formatHTML } = require("./utils/html-formatter.js");
 const { data: championData } = require("../data/championFull.json");
 const { version } = require("../config.json");
 
@@ -67,7 +65,7 @@ module.exports = {
          * with a newline to replicate the html behavior.
          */
         embed.addField(field,
-                       $("<div />").html(skill.description.replaceAll("<br>", "\n")).text(),
+                       formatHTML(skill.description),
                        false);
       });
     } else if (commandType === "champion_stats") {
