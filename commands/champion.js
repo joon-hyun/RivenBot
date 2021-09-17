@@ -1,5 +1,6 @@
 const { MessageEmbed } = require("discord.js");
 const { SlashCommandBuilder } = require("@discordjs/builders");
+const { findName } = require("./utils/name-finder.js");
 const { formatHTML } = require("./utils/html-formatter.js");
 const { data: championData } = require("../data/championFull.json");
 const { version } = require("../config.json");
@@ -23,16 +24,9 @@ module.exports = {
         .setRequired(true);
     }),
   async execute(interaction) {
-    let champion;
     const championName = interaction.options.getString("name");
     const commandType = interaction.options.getString("type");
-
-    for (key in championData) {
-      if (championData[key].name.toLowerCase() === championName.toLowerCase()) {
-        champion = championData[key];
-        break;
-      }
-    }
+    const champion = findName(championData, championName);
 
     if (!champion) {
       await interaction.editReply("That champion does not exist.");
@@ -57,7 +51,7 @@ module.exports = {
         let field = `${key} - ${skill.name}`;
 
         if (key !== "P") {
-          field = `${field} (${skill.cooldownBurn} s)`;
+          field = `${field} (${skill.cooldownBurn}s)`;
         }
 
         /*
