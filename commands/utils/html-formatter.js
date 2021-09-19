@@ -6,8 +6,8 @@ module.exports = {
   formatHTML(text) {
     /**
      * Skill descriptions may contain certain tags that we may want to
-     * replicate the behavior of, especially spacing. Thus, I replace those
-     * tags with a newline.
+     * replicate the behavior of, especially spacing. Thus, replace those tags
+     * with a newline.
      */
     const str = text
       .replaceAll("<br>", "\n")
