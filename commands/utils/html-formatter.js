@@ -4,6 +4,14 @@ const $ = require("jquery")(window);
 
 module.exports = {
   formatHTML(text) {
-    return $("<div />").html(text.replaceAll("<br>", "\n")).text();
+    /**
+     * Skill descriptions may contain certain tags that we may want to
+     * replicate the behavior of, especially spacing. Thus, I replace those
+     * tags with a newline.
+     */
+    const str = text
+      .replaceAll("<br>", "\n")
+      .replaceAll("<li>", "\n")
+    return $("<div />").html(str).text();
   }
 };

@@ -54,13 +54,7 @@ module.exports = {
           field = `${field} (${skill.cooldownBurn}s)`;
         }
 
-        /*
-         * Skill descriptions may contain <br> tags. Therefore, replace them
-         * with a newline to replicate the html behavior.
-         */
-        embed.addField(field,
-                       formatHTML(skill.description),
-                       false);
+        embed.addField(field, formatHTML(skill.description), false);
       });
     } else if (commandType === "champion_stats") {
       const {
