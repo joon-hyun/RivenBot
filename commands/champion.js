@@ -3,7 +3,7 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 const { findName } = require("./utils/name-finder.js");
 const { formatHTML } = require("./utils/html-formatter.js");
 const { data: championData } = require("../data/championFull.json");
-const { version } = require("../config.json");
+const { patch } = require("../config.json");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -36,7 +36,7 @@ module.exports = {
     const embed = new MessageEmbed()
       .setTitle(champion.name)
       .setDescription(champion.title)
-      .setFooter(`Patch ${version}`);
+      .setFooter(`Patch ${patch}`);
 
     if (commandType === "champion_abilities") {
       const abilities = new Map([

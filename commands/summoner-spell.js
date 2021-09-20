@@ -3,7 +3,7 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 const { findName } = require("./utils/name-finder.js");
 const { formatHTML } = require("./utils/html-formatter.js");
 const { data: summonerSpellData } = require("../data/summoner.json");
-const { version } = require("../config.json");
+const { patch } = require("../config.json");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -41,7 +41,7 @@ module.exports = {
     const embed = new MessageEmbed()
       .setTitle(title)
       .setDescription(summonerSpell.description.replaceAll("@SmiteBaseDamage@", ""))
-      .setFooter(`Patch ${version}`);
+      .setFooter(`Patch ${patch}`);
 
     await interaction.editReply({ embeds: [embed] });
   }

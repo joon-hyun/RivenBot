@@ -2,7 +2,7 @@ const { MessageEmbed } = require("discord.js");
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { formatHTML } = require("./utils/html-formatter.js");
 const runesReforged = require("../data/runesReforged.json");
-const { version } = require("../config.json");
+const { patch } = require("../config.json");
 
 function findRuneName(name) {
   // Traverse through layers of arrays/objects in JSON file.
@@ -47,7 +47,7 @@ module.exports = {
     const embed = new MessageEmbed()
       .setTitle(`${rune.name} (${rune.tree})`)
       .setDescription(formatHTML(rune.longDesc))
-      .setFooter(`Patch ${version}`);
+      .setFooter(`Patch ${patch}`);
 
     await interaction.editReply({ embeds: [embed] });
   }

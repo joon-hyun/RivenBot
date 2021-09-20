@@ -3,7 +3,7 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 const { findName } = require("./utils/name-finder.js");
 const { formatHTML } = require("./utils/html-formatter.js");
 const { data: itemData } = require("../data/item.json");
-const { version } = require("../config.json");
+const { patch } = require("../config.json");
 
 function getBuildPath(items) {
   let buildPath;
@@ -40,7 +40,7 @@ module.exports = {
     const embed = new MessageEmbed()
       .setTitle(item.name)
       .setDescription(formatHTML(item.description))
-      .setFooter(`Patch ${version}`)
+      .setFooter(`Patch ${patch}`)
       .addField("Total Price", `${item.gold.total} G`, true)
       .addField("Base Price", `${item.gold.base} G`, true) // Total Price - Component Price
       .addField("Sell Price", `${item.gold.sell} G`, true);
