@@ -39,22 +39,22 @@ module.exports = {
       .setFooter(`Patch ${version}`);
 
     if (commandType === "champion_abilities") {
-      const skills = new Map([
+      const abilities = new Map([
         ["P", champion.passive],
-        ["Q", champion.spells["0"]],
-        ["W", champion.spells["1"]],
-        ["E", champion.spells["2"]],
-        ["R", champion.spells["3"]]
+        ["Q", champion.spells[0]],
+        ["W", champion.spells[1]],
+        ["E", champion.spells[2]],
+        ["R", champion.spells[3]]
       ]);
 
-      skills.forEach((skill, key) => {
-        let field = `${key} - ${skill.name}`;
+      abilities.forEach((ability, key) => {
+        let field = `${key} - ${ability.name}`;
 
         if (key !== "P") {
-          field = `${field} (${skill.cooldownBurn}s)`;
+          field = `${field} (${ability.cooldownBurn}s)`;
         }
 
-        embed.addField(field, formatHTML(skill.description), false);
+        embed.addField(field, formatHTML(ability.description), false);
       });
     } else if (commandType === "champion_stats") {
       const {

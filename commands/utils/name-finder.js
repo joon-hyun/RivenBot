@@ -2,7 +2,7 @@ module.exports = {
   findName(data, name) {
     let value;
 
-    for (key in data) {
+    for (const key in data) {
       if (data[key].name.toLowerCase() === name.toLowerCase()) {
         value = data[key];
         break;
