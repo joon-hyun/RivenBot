@@ -1,4 +1,8 @@
 # Riven Bot
+Riven Bot was created under Riot Games' "Legal Jibber Jabber" policy using
+assets owned by Riot Games.  Riot Games does not endorse or sponsor this
+project.
+
 Riven Bot is a Discord bot that provides information about:
 * Summoner's rank and their mastery
 * Champions
