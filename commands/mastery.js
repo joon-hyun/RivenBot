@@ -6,7 +6,7 @@ const { keys: championKeys, data: championData } = require("../data/championFull
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("mastery")
-    .setDescription("Searches for a summoner's top 3 champion masteries.")
+    .setDescription("Provides info about a summoner's top 3 champion masteries.")
     .addStringOption((option) => {
       return option
         .setName("name")

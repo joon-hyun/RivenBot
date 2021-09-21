@@ -5,7 +5,7 @@ const { getSummoner, getRankData } = require("./utils/lol-requests.js");
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("rank")
-    .setDescription("Searches for a summoner's rank.")
+    .setDescription("Provides info about a summoner's rank.")
     .addStringOption((option) => {
       return option
         .setName("name")

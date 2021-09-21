@@ -28,7 +28,7 @@ function findRuneName(name) {
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("rune")
-    .setDescription("Searches for a rune's description.")
+    .setDescription("Provides info about a rune.")
     .addStringOption((option) => {
       return option
         .setName("name")

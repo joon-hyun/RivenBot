@@ -8,7 +8,7 @@ const { patch } = require("../config.json");
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("champion")
-    .setDescription("Searches for a champion's abilities or stats.")
+    .setDescription("Provides info about a champion's abilities or stats.")
     .addStringOption((option) => {
       return option
         .setName("type")

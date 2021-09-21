@@ -21,7 +21,7 @@ function getBuildPath(items) {
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("item")
-    .setDescription("Searches for an item's stats and abilities.")
+    .setDescription("Provides info about an item's stats and abilities.")
     .addStringOption((option) => {
       return option
         .setName("name")
