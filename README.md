@@ -35,8 +35,10 @@ information to help players improve.
    ```
 
 4. Place [Data Dragon](https://developer.riotgames.com/docs/lol) in the current
-   directory. Fill up the `data` directory with the needed Data Dragon files.
+   directory. Create and fill up the `data` directory with the necessary Data
+   Dragon files.
    ```
+   $ mkdir data
    $ tar -xvzf dragontail-*.tgz
    $ mv dragontail-*/*/data/en_US/championFull.json data/
    $ mv dragontail-*/*/data/en_US/item.json data/
